@@ -47,8 +47,19 @@ function generatePassword() {
       "Do you want special characters in your password?"
     );
 
+    var criteria = [includeLower, includeUpper, includeNumber, includeSpecial];
+    var validKeys = Object.keys(passwordCharacters);
+    // The following loop checks to see which characters the user does not want,
+    // and eliminates the corresponding key from the validKeys array.
+    for (var i = 0; i < criteria.length; i++) {
+      if (criteria[i] == false) {
+        validKeys = validKeys.slice(0, i).concat(i+1, validKeys.length);
+      }
+    }
     var password = "";
-    for (var i = 1; i < passwordLength + 1; i++) {}
+    for (var i = 1; i < passwordLength + 1; i++) {
+      
+    }
     break;
   }
 }
