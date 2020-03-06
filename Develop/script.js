@@ -18,10 +18,13 @@ function randomIndex(array) {
 function generatePassword() {
   while (true) {
     // The use of the while loop is to restart the process if the user makes an error.
-    var lowerCase = "abcdefghijklmnopqrstuvwxyz";
-    var upperCase = lowerCase.toUpperCase();
-    var numbers = "0123456789";
-    var specialCharacters = " !\"#$%&'()*+,-./:;<=>?@[]^_`{|}~";
+    var passwordCharacters = {
+      lowerCase: "abcdefghijklmnopqrstuvwxyz",
+      upperCase: "abcdefghijklmnopqrstuvwxyz".toUpperCase(),
+      numbers: "0123456789",
+      specialCharacters: " !\"#$%&'()*+,-./:;<=>?@[]^_`{|}~"
+    };
+
     var passwordLength = prompt(
       "How long do you want your password to be? (Choose a number between 8 and 128)"
     );
@@ -33,11 +36,19 @@ function generatePassword() {
       continue;
     }
 
-    var includeLower = confirm('Do you want lowercase letters in your password?');
-    var includeUpper = confirm('Do you want uppercase letters in your password?');
-    var includeNumber = confirm('Do you want numbers in your password?');
-    var includeSpecial = confirm('Do you want special characters in your password?');
-    
+    var includeLower = confirm(
+      "Do you want lowercase letters in your password?"
+    );
+    var includeUpper = confirm(
+      "Do you want uppercase letters in your password?"
+    );
+    var includeNumber = confirm("Do you want numbers in your password?");
+    var includeSpecial = confirm(
+      "Do you want special characters in your password?"
+    );
+
+    var password = "";
+    for (var i = 1; i < passwordLength + 1; i++) {}
     break;
   }
 }
