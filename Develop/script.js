@@ -7,14 +7,25 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 function generatePassword() {
-  var lowerCase = 'abcdefghijklmnopqrstuvwxyz';
-  var upperCase = lowerCase.toUpperCase();
-  var numbers = '0123456789';
-  var specialCharacters =  " !\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
-  console.log(specialCharacters[2]);
+  while (true) {
+    var lowerCase = "abcdefghijklmnopqrstuvwxyz";
+    var upperCase = lowerCase.toUpperCase();
+    var numbers = "0123456789";
+    var specialCharacters = " !\"#$%&'()*+,-./:;<=>?@[]^_`{|}~";
+    var passwordLength = prompt(
+      "How long do you want your password to be? (Choose a number between 8 and 128)"
+    );
+    if (isNaN(parseInt(passwordLength))) {
+      alert("That is not a number. Please choose a number");
+      continue;
+    } else if (parseInt(passwordLength) < 8 || parseInt(passwordLength) > 128) {
+      alert("Please choose a number between 8 and 128");
+      continue;
+    }
+    break;
+  }
 }
 
 generatePassword();
