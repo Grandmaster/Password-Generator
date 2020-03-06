@@ -66,7 +66,7 @@ function generatePassword() {
       );
       continue;
     }
-    // The following loop checks to see which characters the user does not want,
+    // The following loop checks to see which character types the user does not want,
     // and eliminates the corresponding key from the keys array.
     for (var i = 0; i < criteria.length; i++) {
       if (criteria[i] == false) {
@@ -88,16 +88,22 @@ function generatePassword() {
     // Finally, this section of the function checks whether at least one of the desired character
     // types appears in the password, and reconstructs the password if that is not the case.
     // It uses regular expressions.
+    var test;
     for (let i of password) {
       for (let j of validKeys) {
-        let test = new RegExp(i);
+        // Here I had to escape special characters so I could construct regular expressions for them.
+        if (passwordCharacters.specialCharacters.indexOf(i) !== -1) {
+          test = new RegExp('\\' + i);
+        }
+        else {
+          test = new RegExp(i);
+        }
         if (test.test(passwordCharacters[j])) {
           validKeys.splice(validKeys.indexOf(j), 1);
         }
       }
     }
     if (validKeys.length == 0) {
-      console.log(validKeys);
       return password;
     } else {
       alert(
