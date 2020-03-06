@@ -27,7 +27,7 @@ function generatePassword() {
       numbers: "0123456789",
       specialCharacters: " !\"#$%&'()*+,-./:;<=>?@[]^_`{|}~"
     };
-
+    // This section prompts the user for the password length and validates his/her choice
     var passwordLength = parseInt(prompt(
       "How long do you want your password to be? (Choose a number between 8 and 128)"
     ));
@@ -38,7 +38,8 @@ function generatePassword() {
       alert("Please choose a number between 8 and 128");
       continue;
     }
-
+    // These lines of code prompt the user for what types of characters to include in his/her password,
+    // and stores his/her choices in an array
     var includeLower = confirm(
       "Do you want lowercase letters in your password?"
     );
@@ -52,6 +53,15 @@ function generatePassword() {
 
     var criteria = [includeLower, includeUpper, includeNumber, includeSpecial];
     var keys = Object.keys(passwordCharacters);
+    // The next bit of code ensures the user selects at least one of the character types
+    // to include in his/her password.
+    var atLeastOne = criteria.filter(a => {
+      return a == true;
+    })
+    if (atLeastOne.length == 0) {
+      alert('Your password must contain at least one letter, number or special character');
+      continue;
+    }
     // The following loop checks to see which characters the user does not want,
     // and eliminates the corresponding key from the keys array.
     for (var i = 0; i < criteria.length; i++) {
@@ -71,12 +81,13 @@ function generatePassword() {
       var Char = pickChar[randomIndex(pickChar)];
       password = password + Char;
     }
+    // Finally, this section of the function checks whether at least one of the desired character
+    // types appears in the password, and reconstructs the password if that is not the case.
     console.log(password);
     console.log(password.length);
     return password;
   }
 }
-// generatePassword();
 // CUSTOM CODE ENDS
 // ==============================
 
