@@ -8,8 +8,16 @@ function writePassword() {
 
   passwordText.value = password;
 }
+// randomIndex is a function that takes an array/string and generates a random number
+// between 0 and the length of the array/string - 1, to be used to pick out a random
+// member of the array/string.
+function randomIndex(array) {
+  rand = Math.floor(Math.random() * array.length);
+  return rand;
+}
 function generatePassword() {
   while (true) {
+    // The use of the while loop is to restart the process if the user makes an error.
     var lowerCase = "abcdefghijklmnopqrstuvwxyz";
     var upperCase = lowerCase.toUpperCase();
     var numbers = "0123456789";
@@ -24,6 +32,12 @@ function generatePassword() {
       alert("Please choose a number between 8 and 128");
       continue;
     }
+
+    var includeLower = confirm('Do you want lowercase letters in your password?');
+    var includeUpper = confirm('Do you want uppercase letters in your password?');
+    var includeNumber = confirm('Do you want numbers in your password?');
+    var includeSpecial = confirm('Do you want special characters in your password?');
+    
     break;
   }
 }
