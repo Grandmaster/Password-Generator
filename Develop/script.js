@@ -28,9 +28,11 @@ function generatePassword() {
       specialCharacters: " !\"#$%&'()*+,-./:;<=>?@[]^_`{|}~"
     };
     // This section prompts the user for the password length and validates his/her choice
-    var passwordLength = parseInt(prompt(
-      "How long do you want your password to be? (Choose a number between 8 and 128)"
-    ));
+    var passwordLength = parseInt(
+      prompt(
+        "How long do you want your password to be? (Choose a number between 8 and 128)"
+      )
+    );
     if (isNaN(parseInt(passwordLength))) {
       alert("That is not a number. Please choose a number");
       continue;
@@ -57,9 +59,11 @@ function generatePassword() {
     // to include in his/her password.
     var atLeastOne = criteria.filter(a => {
       return a == true;
-    })
+    });
     if (atLeastOne.length == 0) {
-      alert('Your password must contain at least one letter, number or special character');
+      alert(
+        "Your password must contain at least one letter, number or special character"
+      );
       continue;
     }
     // The following loop checks to see which characters the user does not want,
@@ -73,7 +77,7 @@ function generatePassword() {
       return a !== "";
     });
     // This bit of the code actually generates the password from the Passwordcharacters
-    // object.
+    // object, to the specified length.
     var password = "";
     for (var i = 1; i < passwordLength + 1; i++) {
       var pickType = validKeys[randomIndex(validKeys)];
@@ -83,9 +87,24 @@ function generatePassword() {
     }
     // Finally, this section of the function checks whether at least one of the desired character
     // types appears in the password, and reconstructs the password if that is not the case.
-    console.log(password);
-    console.log(password.length);
-    return password;
+    // It uses regular expressions.
+    for (let i of password) {
+      for (let j of validKeys) {
+        let test = new RegExp(i);
+        if (test.test(passwordCharacters[j])) {
+          validKeys.splice(validKeys.indexOf(j), 1);
+        }
+      }
+    }
+    if (validKeys.length == 0) {
+      console.log(validKeys);
+      return password;
+    } else {
+      alert(
+        "The password constructed does not match your criteria. To create a secure password, please try again."
+      );
+      continue;
+    }
   }
 }
 // CUSTOM CODE ENDS
