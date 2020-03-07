@@ -107,7 +107,7 @@ function generatePassword() {
       return password;
     } else {
       alert(
-        "The password constructed does not match your criteria. To create a secure password, please try again."
+        "The password constructed does not match your criteria. According to our security test, the password has omitted one or more of your desired classes. To create a secure password, please try again."
       );
       continue;
     }
